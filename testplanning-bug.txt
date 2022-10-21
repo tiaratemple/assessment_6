@@ -1,0 +1,46 @@
+Test planning:
+
+Link: localhost:3000
+
+Test criteria: 
+-make sure site loads
+-“See All Bots” button loads all Bots
+-Wins will track wins
+-Losses will track losses
+-“Draw” button gives options of Bots
+-“DUEL!” will start duel
+
+-Chrome is recommended browser
+
+
+Test Case:
+
+Steps:
+Navigate to localhost:3000
+Click on “See All Bots”
+Observe
+
+Test postconditions:
+-All bots should load 
+
+
+Bug Report: 
+
+Description: All bots do not load when “See All Bots” is clicked
+
+Steps to reproduce: 
+Navigate to localhost:3000
+Click on “See All Bots”
+
+Expected Result:
+-All bots should load
+
+Actual Result:
+-No bots load
+
+Environment:
+-Chrome latest version
+-Mac
+
+Attachment:
+-Screenshot
