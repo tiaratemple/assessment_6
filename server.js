@@ -7,6 +7,18 @@ const {shuffleArray} = require('./utils')
 app.use(express.json())
 app.use(express.static('public'))
 
+// include and initialize the rollbar library with your access token
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: '7a139adfa9d24a09b8c2159d2570750b',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
+
+
 const { getHTML, getCSS, getJS } = require('./controller')
 
 app.get('/', getHTML)
@@ -15,10 +27,12 @@ app.get('/js', getJS)
 
 app.get('/api/robots', (req, res) => {
     try {
+        rollbar.info("a requst for robots was made")
         res.status(200).send(botsArr)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
+        Rollbar.error("Something went wrong", error)
     }
 })
 
@@ -31,6 +45,7 @@ app.get('/api/robots/five', (req, res) => {
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
         res.sendStatus(400)
+        rollbar.critical("Connection error")
     }
 })
 
@@ -68,11 +83,14 @@ app.post('/api/duel', (req, res) => {
 app.get('/api/player', (req, res) => {
     try {
         res.status(200).send(playerRecord)
+        rollbar.info("stats requested")
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
         res.sendStatus(400)
     }
 })
+
+
 
 const port = process.env.PORT || 3000
 

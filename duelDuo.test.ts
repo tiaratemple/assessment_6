@@ -1,12 +1,11 @@
 
 import { Builder, Capabilities, By } from "selenium-webdriver"
-import { shallow } from 'enzyme';
 require('chromedriver')
 
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('http://localhost:3000/')
+    driver.get('http://localhost:3000/index.html')
 })
 
 afterAll(async () => {
@@ -14,18 +13,26 @@ afterAll(async () => {
 })
 
 test('Title shows up when page loads', async () => {
-    const title = await driver.findElement(By.id('title'))
+    const title = await driver.findElement(By.id("title"))
     const displayed = await title.isDisplayed()
     expect(displayed).toBe(true)
+    await driver.sleep(2000)
 })
 
 test('When draw button is clicked show choices', async () => {
-    const btn = await driver.findElement(By.id('choices'))
-    const displayed = await btn.isDisplayed()
-    const mockCallBack = jest.fn();
-
-    const button = shallow(btn);
-    button.find('button').simulate('click');
-    expect(mockCallBack.mock.calls.length).toEqual(1);
+    const drawBtn = await driver.findElement(By.id('draw'))
+    const botChoices = await driver.findElement(By.id('choices'))
+    drawBtn.click()
+    const displayed = await botChoices.isDisplayed()
     expect(displayed).toBe(true)
+    await driver.sleep(2000)
+})
+
+test('Clicking add to duo button displays the div with id player-duo', async () => {
+    const addToDuoBtn = await driver.findElement(By.className("button.bot-btn"))
+    const playerDuo = await driver.findElement(By.id('player-duo'))
+    addToDuoBtn.click()
+    const displayed = await playerDuo.isDisplayed()
+    expect(displayed).toBe(true)
+    await driver.sleep(2000)
 })
