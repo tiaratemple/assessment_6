@@ -1,46 +1,57 @@
 Test planning:
 
-Link: localhost:3000
+    Link: 
+    -localhost:3000
+    -version
 
-Test criteria: 
--make sure site loads
--“See All Bots” button loads all Bots
--Wins will track wins
--Losses will track losses
--“Draw” button gives options of Bots
--“DUEL!” will start duel
+    Test criteria: 
+    -make sure site loads
+    -“See All Bots” button loads all Bots
+    -Wins will track wins
+    -Losses will track losses
+    -“Draw” button gives options of Bots
+    -“DUEL!” will start duel
+    
+    Entry Criteria:
+    -test criteria provided
+    -version provided
+    -computer for testing
 
--Chrome is recommended browser
+    Exit Criteria:
+    -all high priority tests have passed
+
+    Environment:
+    -Chrome is recommended browser
 
 
 Test Case:
 
-Steps:
-Navigate to localhost:3000
-Click on “See All Bots”
-Observe
+    Steps:
+    Navigate to localhost:3000
+    Click on “See All Bots”
+    Observe
 
-Test postconditions:
--All bots should load 
+    Test postconditions:
+    -All bots should load 
 
 
 Bug Report: 
 
-Description: All bots do not load when “See All Bots” is clicked
+    Description: All bots do not load when “See All Bots” is clicked
 
-Steps to reproduce: 
-Navigate to localhost:3000
-Click on “See All Bots”
+    Steps to reproduce: 
+    Navigate to localhost:3000
+    Click on “See All Bots”
 
-Expected Result:
--All bots should load
+    Expected Result:
+    -All bots should load
 
-Actual Result:
--No bots load
+    Actual Result:
+    -No bots load
 
-Environment:
--Chrome latest version
--Mac
+    Environment:
+    -Chrome latest version
+    -Mac
 
 Attachment:
 -Screenshot
